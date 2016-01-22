@@ -24,9 +24,9 @@ public class MainController {
 		return impl.getMeters();
 	}
 	
-	@RequestMapping(value = "/displayMessage/{msg}", method = RequestMethod.GET)
-	public String displayMessage(@PathVariable String msg, ModelMap model) {
-		model.addAttribute("msg", msg);
-		return "helloWorld";
-	}
+//	@RequestMapping(value = "/displayMessage/{msg}", method = RequestMethod.GET)
+//	public String displayMessage(@PathVariable String msg, ModelMap model) {
+//		model.addAttribute("msg", msg);
+//		return "helloWorld";
+//	}
 }

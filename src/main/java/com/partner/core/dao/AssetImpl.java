@@ -8,12 +8,15 @@ import com.partner.core.model.Coordinate;
 import com.partner.core.model.Meter;
 import org.bson.Document;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.text.ParseException;
 import static java.util.Arrays.asList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
+import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 
 /**
@@ -81,16 +84,34 @@ public class AssetImpl {
 		    	String meterID = d.getString("meter");
 		    	String street = d.getString("street");
 		    	String zipCode = d.getString("zipcode");		    	
-		    	Object [] coordinates =  null;//(Object []) d.get("coord");
+		    	Object coordinates = (Object) d.get("coord");
+		    	
 		    	
 		    	Meter meter = new Meter();
-		    	Coordinate cord = null;
 		    	
-		    	if(coordinates != null && coordinates.length > 1){
-		    		String lat = coordinates[0].toString();
-		    		String lon = coordinates[1].toString();
-		    		cord = new Coordinate(lat,lon);
-		    		meter.setCoord(cord);
+		    	
+		    	if (coordinates != null && coordinates instanceof List) {
+		    		List<Object> coord = Arrays.asList(coordinates);
+		    		Iterator<Object> it = coord.iterator();
+		    		String lat = null;
+		    		String lon = null;
+		    		int ct = 0;
+		    		
+		    		while (it.hasNext()) {
+		    			Object o = it.next();
+		    			
+		    			if (ct == 0) {
+		    				lat = String.valueOf(o);
+		    				System.out.println("lat" + lat);
+		    			}
+		    			if (ct == 1) {
+		    				lon = String.valueOf(o);
+		    				Coordinate cord = new Coordinate(lat,lon);
+		    				meter.setCoord(cord);
+		    				System.out.println( "lon:" + lon);
+		    			}
+		    			ct++;
+		    		}		    		
 		    	}
 		    
 		    	meter.setId(meterID);
