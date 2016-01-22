@@ -70,7 +70,7 @@ public class AssetImpl {
 		//FindIterable<Document> iterable = db.getCollection("meters").find(query);		
 		//FindIterable<Document> iterable = db.getCollection("meters").find().limit(1000);
 		FindIterable<Document> iterable = db.getCollection("assets").find();
-		List<Meter> dlist = new ArrayList<Meter>();	
+		List<Meter> dlist = new ArrayList<>();	
 		
 		iterable.forEach(new Block<Document>() {
 		    @Override
@@ -81,14 +81,14 @@ public class AssetImpl {
 		    	String meterID = d.getString("meter");
 		    	String street = d.getString("street");
 		    	String zipCode = d.getString("zipcode");		    	
-		    	ArrayList<Object> coordinates =  (ArrayList<Object>) d.get("coord");
+		    	Object [] coordinates =  null;//(Object []) d.get("coord");
 		    	
 		    	Meter meter = new Meter();
 		    	Coordinate cord = null;
 		    	
-		    	if(coordinates.size() > 1){
-		    		String lat = coordinates.get(0).toString();
-		    		String lon = coordinates.get(0).toString();
+		    	if(coordinates != null && coordinates.length > 1){
+		    		String lat = coordinates[0].toString();
+		    		String lon = coordinates[1].toString();
 		    		cord = new Coordinate(lat,lon);
 		    		meter.setCoord(cord);
 		    	}
