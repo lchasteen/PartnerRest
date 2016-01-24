@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.partner.core.dao.AssetImpl;
 import com.partner.core.model.Meter;
+import com.partner.core.model.MeteringUnits;
 
 @Controller
 @RequestMapping("/assets")
@@ -18,9 +19,11 @@ public class MainController {
 	
 	
 	@RequestMapping(value = "/list/meters", method = RequestMethod.GET)		
-	public @ResponseBody List<Meter> getMeters() {
+	public @ResponseBody MeteringUnits getMeters() {
+		MeteringUnits units = new MeteringUnits();
 		AssetImpl impl = new AssetImpl();
-		return impl.getMeters();
+		units.setMeteringUnits(impl.getMeters());
+		return units;
 	}
 	
 	@RequestMapping(value = "/meter", method = RequestMethod.POST)
