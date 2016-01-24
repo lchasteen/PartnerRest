@@ -3,8 +3,7 @@ package com.partner.rest.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,9 +23,11 @@ public class MainController {
 		return impl.getMeters();
 	}
 	
-//	@RequestMapping(value = "/displayMessage/{msg}", method = RequestMethod.GET)
-//	public String displayMessage(@PathVariable String msg, ModelMap model) {
-//		model.addAttribute("msg", msg);
-//		return "helloWorld";
-//	}
+	@RequestMapping(value = "/meter", method = RequestMethod.POST)
+	public @ResponseBody String insertMeter(@RequestBody Meter meter) {
+		System.out.println(meter.getId());
+		System.out.println(meter.getStreet());
+		System.out.println(meter.getZipcode());
+		return "success";
+	}
 }

@@ -1,11 +1,13 @@
 package com.partner.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Meter {
 	
-		private String id;	
+		private String id;
+		@JsonProperty("coordinate")
 		private Coordinate  coord;
 		private String  street;
 		private String  zipcode;

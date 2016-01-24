@@ -1,10 +1,13 @@
 package com.partner.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Coordinate {	
+	@JsonProperty("latitude")
 	private String latitude;
+	@JsonProperty("longitude")
 	private String longitude;
 	
 	/**
@@ -12,8 +15,9 @@ public class Coordinate {
 	 * @param lat - {@link String} latitude
 	 * @param lon - {@link String} longitude
 	 */
-	public Coordinate(String lat, String lon){
-		
+	public Coordinate(String latitude, String longitude){
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	
 	/**
@@ -55,6 +59,11 @@ public class Coordinate {
 		this.longitude = longitude;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return latitude + " " + longitude;
+	}
 	
 
 }
