@@ -1,11 +1,21 @@
 package com.partner.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Entity {
 
-	private String firstName = "Lane";
-	private String lastName = "Chasteen";
+	private String firstName;
+	private String lastName;
+	private String id;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

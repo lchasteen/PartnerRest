@@ -89,9 +89,7 @@ public class AssetImpl {
 		    		String lon = null;
 		    		int ct = 0;
 		    		
-		    		for ( Double o : coordinates) {
-		    			
-		    			
+		    		for ( Double o : coordinates) {	    			
 		    			if (ct == 0) {
 		    				lat = String.valueOf(o);
 		    				
@@ -99,9 +97,7 @@ public class AssetImpl {
 		    			if (ct == 1) {
 		    				lon = String.valueOf(o);
 		    				Coordinate c = new Coordinate(lat,lon);
-		    				meter.setCoord(c);
-		    				System.out.println(c.toString());
-		    				
+		    				meter.setCoord(c);    				
 		    			}
 		    			ct++;
 		    		}		    		
