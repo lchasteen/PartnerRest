@@ -3,6 +3,7 @@ package com.partner.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import com.partner.core.service.EntityService;
 
 
 @Controller
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/users")
 public class EntityQueryController {
     
@@ -25,7 +27,7 @@ public class EntityQueryController {
 
     /**
      * Constructor auto wired to receive EntityService 
-     * @param {@link EntityService} entityService
+     * @param {@link EntityService} entityService	
      */
     @Autowired
     public EntityQueryController(EntityService<Entity> entityService) {
